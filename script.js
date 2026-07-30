@@ -2,17 +2,64 @@ const chat = document.getElementById("chat");
 const input = document.getElementById("message");
 
 
-
-// XP система
+// XP
 
 let xp = Number(localStorage.getItem("xp")) || 0;
 
 
-const xpCount = document.getElementById("xp-count");
 
-if (xpCount) {
-    xpCount.innerText = xp;
+function updateXP() {
+
+    document.getElementById("xp-count").innerText = xp;
+
+    document.getElementById("your-xp").innerText = xp;
+
+    updateLevel();
+
 }
+
+
+
+function updateLevel() {
+
+
+    let level = "Beginner";
+
+
+    if (xp >= 100 && xp < 300) {
+
+        level = "Elementary";
+
+    }
+
+
+    if (xp >= 300 && xp < 600) {
+
+        level = "Intermediate";
+
+    }
+
+
+    if (xp >= 600) {
+
+        level = "Advanced";
+
+    }
+
+
+    document.getElementById("level").innerText = level;
+
+
+}
+
+
+
+
+
+updateXP();
+
+
+
 
 
 
@@ -20,7 +67,9 @@ if (xpCount) {
 
 // Отправка сообщения
 
+
 async function sendMessage() {
+
 
     const text = input.value.trim();
 
@@ -31,11 +80,14 @@ async function sendMessage() {
 
     chat.innerHTML += `
 
-        <div class="message user">
-            👤 You: ${text}
-        </div>
+    <div class="message user">
+
+    👤 You: ${text}
+
+    </div>
 
     `;
+
 
 
     input.value = "";
@@ -47,20 +99,23 @@ async function sendMessage() {
 
         const response = await fetch("/api/chat", {
 
-            method: "POST",
 
-            headers: {
+            method:"POST",
 
-                "Content-Type": "application/json"
+
+            headers:{
+
+                "Content-Type":"application/json"
 
             },
 
 
-            body: JSON.stringify({
+            body:JSON.stringify({
 
-                message: text
+                message:text
 
             })
+
 
         });
 
@@ -72,26 +127,29 @@ async function sendMessage() {
 
         chat.innerHTML += `
 
-            <div class="message ai">
+        <div class="message ai">
 
-                🤖 AI: ${data.message || JSON.stringify(data)}
+        🤖 AI:
+        ${data.message || "Ответ получен"}
 
-            </div>
+        </div>
 
         `;
 
 
+    }
 
-    } catch(error) {
+
+    catch(error){
 
 
         chat.innerHTML += `
 
-            <div class="message ai">
+        <div class="message ai">
 
-                ❌ Ошибка: ${error.message}
+        ❌ Ошибка соединения
 
-            </div>
+        </div>
 
         `;
 
@@ -102,6 +160,7 @@ async function sendMessage() {
 
     chat.scrollTop = chat.scrollHeight;
 
+
 }
 
 
@@ -110,16 +169,17 @@ async function sendMessage() {
 
 
 
-// Enter отправляет сообщение
-
-input.addEventListener("keydown", function(event) {
 
 
-    if (event.key === "Enter") {
+// Enter отправка
 
+
+input.addEventListener("keydown", function(event){
+
+
+    if(event.key === "Enter"){
 
         sendMessage();
-
 
     }
 
@@ -134,25 +194,62 @@ input.addEventListener("keydown", function(event) {
 
 
 
-// Открыть испытания
-
-function openChallenges() {
+// Испытания
 
 
-    const box = document.getElementById("challenge-box");
+function openChallenges(){
+
+
+    hideAll();
+
+
+    document.getElementById("challenge-box").style.display="block";
+
+
+}
 
 
 
-    if (box.style.display === "block") {
 
 
-        box.style.display = "none";
+
+function checkChallenge(){
+
+
+    const answer = document
+    .getElementById("challenge-answer")
+    .value
+    .toLowerCase()
+    .trim();
+
+
+
+    const result =
+    document.getElementById("challenge-result");
+
+
+
+
+    if(answer==="apple" || answer==="яблоко"){
+
+
+        xp += 10;
+
+
+        localStorage.setItem("xp",xp);
+
+
+        updateXP();
+
+
+
+        result.innerHTML="✅ Правильно! +10 XP";
 
 
     } else {
 
 
-        box.style.display = "block";
+        result.innerHTML="❌ Попробуй ещё раз";
 
 
     }
@@ -167,54 +264,83 @@ function openChallenges() {
 
 
 
-// Проверка испытания
+
+// Уроки
 
 
-function checkChallenge() {
+function openLessons(){
 
 
-    const answer = document
-        .getElementById("challenge-answer")
-        .value
-        .toLowerCase()
-        .trim();
+    hideAll();
 
 
-
-    const result = document.getElementById("challenge-result");
-
+    document.getElementById("lesson-box").style.display="block";
 
 
-    if (answer === "apple" || answer === "яблоко") {
+}
 
 
 
-        xp = xp + 10;
+
+
+function completeLesson(){
+
+
+    xp += 5;
+
+
+    localStorage.setItem("xp",xp);
+
+
+    updateXP();
+
+
+    document.getElementById("lesson-result").innerHTML=
+
+    "✅ Урок выполнен! +5 XP";
+
+
+}
 
 
 
-        localStorage.setItem("xp", xp);
 
 
 
-        document.getElementById("xp-count").innerText = xp;
 
 
 
-        result.innerHTML = "✅ Правильно! +10 XP";
+// Рейтинг
+
+
+function openRanking(){
+
+
+    hideAll();
+
+
+    document.getElementById("ranking-box").style.display="block";
+
+
+}
 
 
 
-    } else {
 
 
 
-        result.innerHTML = "❌ Неправильно. Попробуй ещё раз";
 
 
+function hideAll(){
 
-    }
 
+    document.getElementById("lesson-box").style.display="none";
+
+
+    document.getElementById("challenge-box").style.display="none";
+
+
+    document.getElementById("ranking-box").style.display="none";
 
 
 }
@@ -230,16 +356,16 @@ function checkChallenge() {
 // Новый чат
 
 
-function newChat() {
+function newChat(){
 
 
-    chat.innerHTML = `
+    chat.innerHTML=`
 
-        <div class="message ai">
+    <div class="message ai">
 
-            Hello! I am your AI teacher. Let's practice English!
+    Hello! I am your AI teacher. Let's practice English!
 
-        </div>
+    </div>
 
     `;
 
