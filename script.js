@@ -6,64 +6,82 @@ async function sendMessage() {
 
     if (!text) return;
 
-    // Сообщение пользователя
+
+    // сообщение пользователя
     chat.innerHTML += `
         <div class="message user">
             ${text}
         </div>
     `;
 
+
     input.value = "";
 
-    // Ответ про создателя
+
+    // прокрутка вниз
+    chat.scrollTop = chat.scrollHeight;
+
+
+    // ответ про создателя
     if (
         text.toLowerCase().includes("кто твой создатель") ||
-        text.toLowerCase().includes("кто тебя создал") ||
-        text.toLowerCase().includes("твой создатель")
+        text.toLowerCase().includes("кто тебя создал")
     ) {
+
         chat.innerHTML += `
             <div class="message ai">
                 Мой создатель — Сайдазим.
             </div>
         `;
+
+        chat.scrollTop = chat.scrollHeight;
         return;
     }
 
-    // Показ "печатает"
+
+    // индикатор печати
     chat.innerHTML += `
         <div class="message ai" id="typing">
             Печатает...
         </div>
     `;
 
+
     chat.scrollTop = chat.scrollHeight;
 
+
     try {
+
         const response = await fetch("/api/chat", {
             method: "POST",
+
             headers: {
                 "Content-Type": "application/json"
             },
+
             body: JSON.stringify({
                 message: text
             })
         });
 
+
         const data = await response.json();
 
-        // Убираем "Печатает..."
-        document.getElementById("typing").remove();
 
-        // Ответ ИИ
+        document.getElementById("typing")?.remove();
+
+
         chat.innerHTML += `
             <div class="message ai">
                 ${data.message || data.response || JSON.stringify(data)}
             </div>
         `;
 
-    } catch (error) {
+
+    } catch(error) {
 
         document.getElementById("typing")?.remove();
+
 
         chat.innerHTML += `
             <div class="message ai">
@@ -72,8 +90,30 @@ async function sendMessage() {
         `;
     }
 
+
     chat.scrollTop = chat.scrollHeight;
 }
+
+
+
+// кнопка Новый чат
 function newChat() {
-    chat.innerHTML = "";
+    chat.innerHTML = `
+        <div class="message ai">
+            Hello! I am your AI teacher. Let's practice English!
+        </div>
+    `;
 }
+
+
+// когда открывается клавиатура
+input.addEventListener("focus", () => {
+
+    setTimeout(() => {
+        input.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+    }, 300);
+
+});
