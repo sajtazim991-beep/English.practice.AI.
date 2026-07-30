@@ -74,3 +74,6 @@ async function sendMessage() {
 
     chat.scrollTop = chat.scrollHeight;
 }
+function newChat() {
+    chat.innerHTML = "";
+}
