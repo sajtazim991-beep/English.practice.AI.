@@ -7,7 +7,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>My AI</title>
+    <title>My AI English Tutor</title>
 
     <link rel="stylesheet" href="style.css">
 
@@ -17,222 +17,309 @@
 <body>
 
 
-    <!-- Левая панель -->
+<div class="sidebar">
 
-    <div class="sidebar">
+    <button onclick="newChat()">
+        + Новый чат
+    </button>
 
-        <button onclick="newChat()">
-            + New Chat
-        </button>
 
-        <h3>
-            My AI
-        </h3>
+    <h3>
+        🤖 My AI
+    </h3>
 
+
+</div>
+
+
+
+
+
+<div class="main">
+
+
+<h1>
+    🤖 My AI English Tutor
+</h1>
+
+
+
+
+
+<!-- Прогресс ученика -->
+
+<div class="progress">
+
+
+    <div>
+        ⭐ XP:
+        <span id="xp-count">0</span>
     </div>
 
 
 
-
-    <!-- Главная часть -->
-
-    <div class="main">
-
-
-        <h1>
-            🤖 My AI
-        </h1>
-
-
-
-
-        <!-- Прогресс -->
-
-        <div class="progress">
-
-            <div>
-                ⭐ XP: <span id="xp-count">0</span>
-            </div>
-
-
-            <div>
-                🔥 День: 1
-            </div>
-
-
-            <div>
-                📚 Уровень: Beginner
-            </div>
-
-
-        </div>
-
-
-
-
-
-        <!-- Карточки -->
-
-        <div class="menu-cards">
-
-
-            <div class="card">
-
-                📚
-
-                <h3>
-                    Уроки
-                </h3>
-
-                <p>
-                    Грамматика, слова и практика
-                </p>
-
-            </div>
-
-
-
-
-
-            <div class="card" onclick="openChallenges()">
-
-                🎯
-
-                <h3>
-                    Испытания
-                </h3>
-
-                <p>
-                    Получай XP за задания
-                </p>
-
-            </div>
-
-
-
-
-
-            <div class="card">
-
-                🏆
-
-                <h3>
-                    Топ учеников
-                </h3>
-
-                <p>
-                    Соревнуйся с другими
-                </p>
-
-            </div>
-
-
-
-        </div>
-
-
-
-
-
-
-
-        <!-- Окно испытания -->
-
-
-        <div id="challenge-box" class="challenge-box">
-
-
-            <h2>
-                🎯 Испытание
-            </h2>
-
-
-
-            <p>
-                Переведи слово:
-                <b>apple</b>
-            </p>
-
-
-
-            <input 
-                id="challenge-answer"
-                placeholder="Твой ответ"
-            >
-
-
-
-
-            <button onclick="checkChallenge()">
-
-                Проверить
-
-            </button>
-
-
-
-
-            <p id="challenge-result"></p>
-
-
-        </div>
-
-
-
-
-
-
-
-        <!-- Чат -->
-
-
-        <div id="chat">
-
-
-            <div class="message ai">
-
-                Hello! I am your AI teacher. Let's practice English!
-
-            </div>
-
-
-        </div>
-
-
-
-
-
-
-
-        <!-- Поле сообщения -->
-
-
-        <div class="input-area">
-
-
-            <input
-                id="message"
-                type="text"
-                placeholder="Write a message..."
-            >
-
-
-
-
-            <button onclick="sendMessage()">
-
-                ➤
-
-            </button>
-
-
-
-        </div>
-
-
-
-
+    <div>
+        🔥 День:
+        <span id="days">1</span>
     </div>
+
+
+
+    <div>
+        📚 Уровень:
+        <span id="level">Beginner</span>
+    </div>
+
+
+
+</div>
+
+
+
+
+
+
+
+<!-- Карточки -->
+
+
+<div class="menu-cards">
+
+
+
+<div class="card" onclick="openLessons()">
+
+    📚
+
+    <h3>
+        Уроки
+    </h3>
+
+    <p>
+        Слова, грамматика и практика
+    </p>
+
+</div>
+
+
+
+
+
+<div class="card" onclick="openChallenges()">
+
+    🎯
+
+    <h3>
+        Испытания
+    </h3>
+
+    <p>
+        Получай XP и повышай уровень
+    </p>
+
+</div>
+
+
+
+
+
+
+<div class="card" onclick="openRanking()">
+
+    🏆
+
+    <h3>
+        Топ учеников
+    </h3>
+
+    <p>
+        Лучшие результаты
+    </p>
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- Уроки -->
+
+
+<div id="lesson-box" class="challenge-box">
+
+
+<h2>
+📚 Урок
+</h2>
+
+
+<p>
+Выучи 5 новых английских слов сегодня.
+</p>
+
+
+<button onclick="completeLesson()">
+Получить XP
+</button>
+
+
+<p id="lesson-result"></p>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- Испытания -->
+
+
+<div id="challenge-box" class="challenge-box">
+
+
+<h2>
+🎯 Испытание
+</h2>
+
+
+
+<p>
+Переведи слово:
+<b>apple</b>
+</p>
+
+
+
+<input 
+id="challenge-answer"
+placeholder="Твой ответ"
+>
+
+
+
+
+<button onclick="checkChallenge()">
+Проверить
+</button>
+
+
+
+<p id="challenge-result"></p>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- Рейтинг -->
+
+
+<div id="ranking-box" class="challenge-box">
+
+
+<h2>
+🏆 Топ учеников
+</h2>
+
+
+<p>
+🥇 Alex — 520 XP
+</p>
+
+
+<p>
+🥈 Maria — 410 XP
+</p>
+
+
+<p>
+🥉 You — <span id="your-xp">0</span> XP
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- Чат -->
+
+
+<div id="chat">
+
+
+<div class="message ai">
+
+Hello! I am your AI teacher. Let's practice English!
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- Ввод -->
+
+
+<div class="input-area">
+
+
+<input
+id="message"
+type="text"
+placeholder="Write a message..."
+>
+
+
+
+
+<button onclick="sendMessage()">
+
+➤
+
+</button>
+
+
+</div>
+
+
+
+
+
+
+</div>
+
 
 
 
