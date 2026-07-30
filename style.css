@@ -14,34 +14,43 @@ body {
 
 /* Левая панель */
 .sidebar {
-    width: 250px;
+    width: 260px;
     background: #171717;
     padding: 20px;
 }
 
 .sidebar button {
     width: 100%;
-    padding: 12px;
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid #555;
     background: #2f2f2f;
     color: white;
-    border: 1px solid #555;
-    border-radius: 8px;
     cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.sidebar button:hover {
+    background: #444;
 }
 
 
-/* Основной чат */
+/* Основная часть */
 .main {
     flex: 1;
     display: flex;
     flex-direction: column;
 }
 
+
 h1 {
     text-align: center;
+    font-size: 26px;
 }
 
 
+/* Чат */
 #chat {
     flex: 1;
     overflow-y: auto;
@@ -51,29 +60,51 @@ h1 {
 
 /* Сообщения */
 .message {
-    padding: 14px;
-    margin: 10px 0;
-    border-radius: 10px;
     max-width: 75%;
+    padding: 15px 18px;
+    margin: 12px 0;
+    border-radius: 18px;
+    line-height: 1.5;
+    animation: appear 0.3s ease;
 }
 
 
 .user {
-    background: #2f2f2f;
+    background: #3a3a3a;
     margin-left: auto;
 }
 
 
 .ai {
-    background: #212121;
-    border-top: 1px solid #444;
+    background: #262626;
+    border: 1px solid #333;
 }
+
+
+/* Анимация */
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 
 
 /* Поле ввода */
 .input-area {
+    position: fixed;
+    bottom: 0;
+    left: 260px;
+    right: 0;
+    padding: 15px;
+    background: #212121;
     display: flex;
-    padding: 20px;
 }
 
 
@@ -82,39 +113,39 @@ input {
     background: #2f2f2f;
     color: white;
     border: none;
-    border-radius: 10px;
+    outline: none;
     padding: 15px;
+    border-radius: 18px;
+    font-size: 16px;
 }
 
 
 .input-area button {
     margin-left: 10px;
+    width: 50px;
+    border-radius: 50%;
+    border: none;
     background: #10a37f;
     color: white;
-    border: none;
-    border-radius: 10px;
-    width: 50px;
-}
-.input-area {
-    position: fixed;
-    bottom: 0;
-    left: 250px;
-    right: 0;
-    background: #212121;
-    padding: 15px;
-    display: flex;
+    font-size: 20px;
+    cursor: pointer;
 }
 
-@media (max-width: 600px) {
+
+/* Телефон */
+@media(max-width:700px){
+
     .sidebar {
-        display: none;
+        display:none;
     }
+
 
     .input-area {
-        left: 0;
+        left:0;
     }
-}
 
-input {
-    width: 100%;
+
+    .message {
+        max-width:90%;
+    }
 }
