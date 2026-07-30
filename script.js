@@ -127,7 +127,9 @@ function openChallenges() {
     }
 }
 let xp = 0;
+let xp = localStorage.getItem("xp") || 0;
 
+document.getElementById("xp-count").innerText = xp;
 function checkChallenge() {
 
     const answer = document
@@ -141,7 +143,9 @@ function checkChallenge() {
 
     if (answer === "яблоко" || answer === "apple") {
 
-        xp += 10;
+        xp = Number(xp) + 10;
+
+localStorage.setItem("xp", xp);
 document.getElementById("xp-count").innerText = xp;
         result.innerHTML = "✅ Правильно! +10 XP";
 
