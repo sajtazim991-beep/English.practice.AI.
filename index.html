@@ -1,50 +1,85 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>My AI</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
+
 <body>
 
+
+    <!-- Левая панель -->
     <div class="sidebar">
-        <button onclick="newChat()">+ New chat</button>
-        <h3>My AI</h3>
+
+        <button onclick="newChat()">
+            + New chat
+        </button>
+
+        <h3>
+            My AI
+        </h3>
+
     </div>
 
 
+
+
+    <!-- Основная часть -->
     <div class="main">
 
-        <h1>My AI</h1>
 
+        <h1>
+            My AI
+        </h1>
+
+
+
+        <!-- Окно чата -->
         <div id="chat">
+
             <div class="message ai">
                 Hello! I am your AI teacher. Let's practice English!
             </div>
+
         </div>
 
 
+
+
+        <!-- Поле ввода -->
         <div class="input-area">
 
             <input 
-                id="message" 
-                type="text" 
+                id="message"
+                type="text"
                 placeholder="Write a message..."
             >
+
 
             <button onclick="sendMessage()">
                 ➤
             </button>
 
+
         </div>
+
+
 
     </div>
 
 
+
+
+
     <script src="script.js"></script>
+
 
 </body>
 
