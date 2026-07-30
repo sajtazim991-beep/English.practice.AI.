@@ -117,3 +117,12 @@ input.addEventListener("focus", () => {
     }, 300);
 
 });
+function openChallenges() {
+    const box = document.getElementById("challenge-box");
+
+    if (box.style.display === "block") {
+        box.style.display = "none";
+    } else {
+        box.style.display = "block";
+    }
+}
