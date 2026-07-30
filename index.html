@@ -15,134 +15,195 @@
 <body>
 
 
-    <!-- Левая панель -->
-    <div class="sidebar">
+<div class="sidebar">
 
-        <button onclick="newChat()">
-            + New chat
+    <button onclick="newChat()">
+        + New chat
+    </button>
+
+    <h3>
+        My AI
+    </h3>
+
+</div>
+
+
+
+<div class="main">
+
+
+    <h1>
+        My AI
+    </h1>
+
+
+
+    <!-- Прогресс -->
+
+    <div class="progress">
+
+        <div>
+            ⭐ XP: <span id="xp-count">0</span>
+        </div>
+
+        <div>
+            🔥 День: 1
+        </div>
+
+        <div>
+            📚 Уровень: Beginner
+        </div>
+
+    </div>
+
+
+
+
+    <!-- Карточки -->
+
+    <div class="menu-cards">
+
+
+        <div class="card">
+            📚
+            <h3>Уроки</h3>
+            <p>Грамматика и слова</p>
+        </div>
+
+
+
+        <div class="card" onclick="openChallenges()">
+
+            🎯
+
+            <h3>
+                Испытания
+            </h3>
+
+            <p>
+                Получай XP за задания
+            </p>
+
+        </div>
+
+
+
+
+        <div class="card">
+
+            🏆
+
+            <h3>
+                Топ учеников
+            </h3>
+
+            <p>
+                Лучшие результаты
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+    <!-- Чат -->
+
+
+    <div id="chat">
+
+
+        <div class="message ai">
+
+            Hello! I am your AI teacher. Let's practice English!
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+    <!-- Испытание -->
+
+
+    <div id="challenge-box" class="challenge-box">
+
+
+        <h2>
+            🎯 Испытание
+        </h2>
+
+
+        <p>
+            Переведи слово:
+            <b>apple</b>
+        </p>
+
+
+        <input 
+            id="challenge-answer"
+            placeholder="Твой ответ"
+        >
+
+
+
+        <button onclick="checkChallenge()">
+
+            Проверить
+
         </button>
 
-        <h3>
-            My AI
-        </h3>
+
+
+        <p id="challenge-result"></p>
+
 
     </div>
 
 
 
 
-    <!-- Основная часть -->
-    <div class="main">
+
+    <!-- Ввод сообщения -->
 
 
-        <h1>
-            My AI
-        </h1>
+    <div class="input-area">
 
-<div class="progress">
 
-    <div>
-    ⭐ XP: <span id="xp-count">0</span>
+        <input
+            id="message"
+            placeholder="Write a message..."
+        >
+
+
+
+        <button onclick="sendMessage()">
+
+            ➤
+
+        </button>
+
+
+    </div>
+
+
+
 </div>
 
-    <div>
-        🔥 День: 1
-    </div>
-
-    <div>
-        📚 Уровень: Beginner
-    </div>
-
-</div>
-<div class="menu-cards">
-
-    <div class="card">
-        📚
-        <h3>Уроки</h3>
-        <p>Грамматика, слова и практика</p>
-    </div>
-
-<div id="challenge-box" class="challenge-box">
-
-    <h2>🎯 Испытание</h2>
-
-    <p>Переведи слово: <b>apple</b></p>
-
-    <input id="challenge-answer" placeholder="Твой ответ">
-
-    <button onclick="checkChallenge()">
-        Проверить
-    </button>
-
-    <p id="challenge-result"></p>
-
-</div>
-    
-
-    <div class="card">
-        🏆
-        <h3>Топ учеников</h3>
-        <p>Соревнуйся с другими</p>
-    </div>
-
-</div>
-        <!-- Окно чата -->
-        <div id="chat">
-
-            <div class="message ai">
-                Hello! I am your AI teacher. Let's practice English!
-            </div>
-
-        </div>
 
 
 
 
-        <!-- Поле ввода -->
-        <div class="input-area">
-
-            <input 
-                id="message"
-                type="text"
-                placeholder="Write a message..."
-            >
+<script src="script.js"></script>
 
 
-            <button onclick="sendMessage()">
-                ➤
-            </button>
-
-
-        </div>
-
-
-
-    </div>
-
-
-
-
-
-    <script src="script.js"></script>
-
-<div id="challenge-box" class="challenge-box">
-
-    <h2>🎯 Испытание</h2>
-
-    <p>
-        Переведи слово:
-        <b>apple</b>
-    </p>
-
-    <input id="challenge-answer" placeholder="Твой ответ">
-
-    <button onclick="checkChallenge()">
-        Проверить
-    </button>
-
-    <p id="challenge-result"></p>
-
-</div>
 </body>
 
 </html>
