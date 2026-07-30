@@ -4,27 +4,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>English AI Tutor</title>
+    <title>My AI</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <h1>🤖 English AI Tutor</h1>
-
-    <div id="chat">
-        <p>🤖 AI: Hello! I am your English teacher. Let's practice!</p>
+    <div class="sidebar">
+        <button onclick="newChat()">+ New chat</button>
+        <h3>My AI</h3>
     </div>
 
-    <input 
-        id="message" 
-        type="text" 
-        placeholder="Write in English..."
-    >
 
-    <button onclick="sendMessage()">
-        Send
-    </button>
+    <div class="main">
+
+        <h1>My AI</h1>
+
+        <div id="chat">
+            <div class="message ai">
+                Hello! I am your AI teacher. Let's practice English!
+            </div>
+        </div>
+
+
+        <div class="input-area">
+
+            <input 
+                id="message" 
+                type="text" 
+                placeholder="Write a message..."
+            >
+
+            <button onclick="sendMessage()">
+                ➤
+            </button>
+
+        </div>
+
+    </div>
 
 
     <script src="script.js"></script>
