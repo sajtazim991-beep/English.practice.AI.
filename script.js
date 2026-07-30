@@ -3,7 +3,6 @@ const input = document.getElementById("message");
 
 async function sendMessage() {
     const text = input.value.trim();
-
     if (!text) return;
 
     chat.innerHTML += `<p><b>👤 You:</b> ${text}</p>`;
@@ -15,17 +14,13 @@ async function sendMessage() {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({
-                message: text
-            })
+            body: JSON.stringify({ message: text })
         });
 
         const data = await response.json();
 
-        chat.innerHTML += `<p><b>🤖 AI:</b> ${data.reply}</p>`;
-        chat.scrollTop = chat.scrollHeight;
-
+        chat.innerHTML += `<pre>${JSON.stringify(data, null, 2)}</pre>`;
     } catch (error) {
-        chat.innerHTML += `<p><b>❌ Error:</b> Could not connect to AI.</p>`;
+        chat.innerHTML += `<p>❌ ${error.message}</p>`;
     }
 }
