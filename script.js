@@ -126,3 +126,29 @@ function openChallenges() {
         box.style.display = "block";
     }
 }
+let xp = 0;
+
+function checkChallenge() {
+
+    const answer = document
+        .getElementById("challenge-answer")
+        .value
+        .toLowerCase()
+        .trim();
+
+    const result = document.getElementById("challenge-result");
+
+
+    if (answer === "яблоко" || answer === "apple") {
+
+        xp += 10;
+
+        result.innerHTML = "✅ Правильно! +10 XP";
+
+    } else {
+
+        result.innerHTML = "❌ Попробуй ещё раз";
+
+    }
+
+}
