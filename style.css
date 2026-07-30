@@ -149,3 +149,28 @@ input {
         max-width:90%;
     }
 }
+/* Панель прогресса */
+
+.progress {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 10px;
+    flex-wrap: wrap;
+}
+
+
+.progress div {
+    background: #2f2f2f;
+    padding: 12px 18px;
+    border-radius: 20px;
+    border: 1px solid #444;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+
+.progress div:hover {
+    transform: translateY(-3px);
+    background: #3a3a3a;
+}
