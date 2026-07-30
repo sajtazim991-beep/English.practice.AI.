@@ -130,7 +130,7 @@ async function sendMessage() {
         <div class="message ai">
 
         🤖 AI:
-        ${data.message || "Ответ получен"}
+        ${data.reply || "Ответ получен"}
 
         </div>
 
