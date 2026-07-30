@@ -143,9 +143,11 @@ function checkChallenge() {
 
     if (answer === "яблоко" || answer === "apple") {
 
-        xp = Number(xp) + 10;
+    xp = Number(xp) + 10;
 
 localStorage.setItem("xp", xp);
+
+document.getElementById("xp-count").innerText = xp;
 document.getElementById("xp-count").innerText = xp;
         result.innerHTML = "✅ Правильно! +10 XP";
 
