@@ -2,6 +2,7 @@
 <html lang="ru">
 
 <head>
+
     <meta charset="UTF-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,193 +10,229 @@
     <title>My AI</title>
 
     <link rel="stylesheet" href="style.css">
+
 </head>
 
 
 <body>
 
 
-<div class="sidebar">
+    <!-- Левая панель -->
 
-    <button onclick="newChat()">
-        + New chat
-    </button>
+    <div class="sidebar">
 
-    <h3>
-        My AI
-    </h3>
-
-</div>
-
-
-
-<div class="main">
-
-
-    <h1>
-        My AI
-    </h1>
-
-
-
-    <!-- Прогресс -->
-
-    <div class="progress">
-
-        <div>
-            ⭐ XP: <span id="xp-count">0</span>
-        </div>
-
-        <div>
-            🔥 День: 1
-        </div>
-
-        <div>
-            📚 Уровень: Beginner
-        </div>
-
-    </div>
-
-
-
-
-    <!-- Карточки -->
-
-    <div class="menu-cards">
-
-
-        <div class="card">
-            📚
-            <h3>Уроки</h3>
-            <p>Грамматика и слова</p>
-        </div>
-
-
-
-        <div class="card" onclick="openChallenges()">
-
-            🎯
-
-            <h3>
-                Испытания
-            </h3>
-
-            <p>
-                Получай XP за задания
-            </p>
-
-        </div>
-
-
-
-
-        <div class="card">
-
-            🏆
-
-            <h3>
-                Топ учеников
-            </h3>
-
-            <p>
-                Лучшие результаты
-            </p>
-
-        </div>
-
-
-    </div>
-
-
-
-
-
-    <!-- Чат -->
-
-
-    <div id="chat">
-
-
-        <div class="message ai">
-
-            Hello! I am your AI teacher. Let's practice English!
-
-        </div>
-
-
-    </div>
-
-
-
-
-
-
-    <!-- Испытание -->
-
-
-    <div id="challenge-box" class="challenge-box">
-
-
-        <h2>
-            🎯 Испытание
-        </h2>
-
-
-        <p>
-            Переведи слово:
-            <b>apple</b>
-        </p>
-
-
-        <input 
-            id="challenge-answer"
-            placeholder="Твой ответ"
-        >
-
-
-
-        <button onclick="checkChallenge()">
-
-            Проверить
-
+        <button onclick="newChat()">
+            + New Chat
         </button>
 
-
-
-        <p id="challenge-result"></p>
-
-
-    </div>
-
-
-
-
-
-    <!-- Ввод сообщения -->
-
-
-    <div class="input-area">
-
-
-        <input
-            id="message"
-            placeholder="Write a message..."
-        >
-
-
-
-        <button onclick="sendMessage()">
-
-            ➤
-
-        </button>
-
+        <h3>
+            My AI
+        </h3>
 
     </div>
 
 
 
-</div>
+
+    <!-- Главная часть -->
+
+    <div class="main">
+
+
+        <h1>
+            🤖 My AI
+        </h1>
+
+
+
+
+        <!-- Прогресс -->
+
+        <div class="progress">
+
+            <div>
+                ⭐ XP: <span id="xp-count">0</span>
+            </div>
+
+
+            <div>
+                🔥 День: 1
+            </div>
+
+
+            <div>
+                📚 Уровень: Beginner
+            </div>
+
+
+        </div>
+
+
+
+
+
+        <!-- Карточки -->
+
+        <div class="menu-cards">
+
+
+            <div class="card">
+
+                📚
+
+                <h3>
+                    Уроки
+                </h3>
+
+                <p>
+                    Грамматика, слова и практика
+                </p>
+
+            </div>
+
+
+
+
+
+            <div class="card" onclick="openChallenges()">
+
+                🎯
+
+                <h3>
+                    Испытания
+                </h3>
+
+                <p>
+                    Получай XP за задания
+                </p>
+
+            </div>
+
+
+
+
+
+            <div class="card">
+
+                🏆
+
+                <h3>
+                    Топ учеников
+                </h3>
+
+                <p>
+                    Соревнуйся с другими
+                </p>
+
+            </div>
+
+
+
+        </div>
+
+
+
+
+
+
+
+        <!-- Окно испытания -->
+
+
+        <div id="challenge-box" class="challenge-box">
+
+
+            <h2>
+                🎯 Испытание
+            </h2>
+
+
+
+            <p>
+                Переведи слово:
+                <b>apple</b>
+            </p>
+
+
+
+            <input 
+                id="challenge-answer"
+                placeholder="Твой ответ"
+            >
+
+
+
+
+            <button onclick="checkChallenge()">
+
+                Проверить
+
+            </button>
+
+
+
+
+            <p id="challenge-result"></p>
+
+
+        </div>
+
+
+
+
+
+
+
+        <!-- Чат -->
+
+
+        <div id="chat">
+
+
+            <div class="message ai">
+
+                Hello! I am your AI teacher. Let's practice English!
+
+            </div>
+
+
+        </div>
+
+
+
+
+
+
+
+        <!-- Поле сообщения -->
+
+
+        <div class="input-area">
+
+
+            <input
+                id="message"
+                type="text"
+                placeholder="Write a message..."
+            >
+
+
+
+
+            <button onclick="sendMessage()">
+
+                ➤
+
+            </button>
+
+
+
+        </div>
+
+
+
+
+    </div>
 
 
 
