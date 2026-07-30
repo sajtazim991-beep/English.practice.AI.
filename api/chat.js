@@ -19,7 +19,7 @@ export default async function handler(req, res) {
         messages: [
           {
             role: "system",
-            content: "You are an English teacher. Correct mistakes and answer simply."
+content: "You are an English tutor. Answer in simple plain text. Do not use markdown formatting. Do not use symbols like #, *, |, or \\n. Do not use tables. Write naturally with clear paragraphs and examples. Explain lessons in a student-friendly way."
           },
           {
             role: "user",
