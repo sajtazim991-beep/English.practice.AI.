@@ -1,26 +1,31 @@
 const chat = document.getElementById("chat");
 const input = document.getElementById("message");
 
-function sendMessage() {
+async function sendMessage() {
+    const text = input.value.trim();
 
-    let text = input.value;
+    if (!text) return;
 
-    if (text === "") return;
-
-    chat.innerHTML += `
-    <p>👤 You: ${text}</p>
-    `;
-
+    chat.innerHTML += `<p><b>👤 You:</b> ${text}</p>`;
     input.value = "";
 
-    // Временный ответ AI
-    setTimeout(() => {
+    try {
+        const response = await fetch("/api/chat", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                message: text
+            })
+        });
 
-        chat.innerHTML += `
-        <p>🤖 AI: Good job! Let's practice more English.</p>
-        `;
+        const data = await response.json();
 
+        chat.innerHTML += `<p><b>🤖 AI:</b> ${data.reply}</p>`;
         chat.scrollTop = chat.scrollHeight;
 
-    }, 1000);
+    } catch (error) {
+        chat.innerHTML += `<p><b>❌ Error:</b> Could not connect to AI.</p>`;
+    }
 }
