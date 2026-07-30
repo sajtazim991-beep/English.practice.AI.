@@ -212,3 +212,30 @@ input {
     color: #bbb;
     font-size: 14px;
 }
+/* Испытания */
+
+.challenge-box {
+    display: none;
+    margin: 20px auto;
+    max-width: 400px;
+    background: #2f2f2f;
+    padding: 25px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+
+.challenge-box input {
+    width: 100%;
+    margin: 10px 0;
+}
+
+
+.challenge-box button {
+    padding: 12px 20px;
+    border-radius: 15px;
+    border: none;
+    background: #10a37f;
+    color: white;
+    cursor: pointer;
+}
