@@ -127,9 +127,36 @@ function openChallenges() {
     }
 }
 let xp = 0;
-let xp = localStorage.getItem("xp") || 0;
+// Система XP
 
-document.getElementById("xp-count").innerText = xp;
+let xp = Number(localStorage.getItem("xp")) || 0;
+
+const xpCount = document.getElementById("xp-count");
+
+if (xpCount) {
+    xpCount.innerText = xp;
+}
+
+
+
+// Открыть испытания
+
+function openChallenges() {
+
+    const box = document.getElementById("challenge-box");
+
+    if (box.style.display === "block") {
+        box.style.display = "none";
+    } else {
+        box.style.display = "block";
+    }
+
+}
+
+
+
+// Проверка испытания
+
 function checkChallenge() {
 
     const answer = document
@@ -138,23 +165,45 @@ function checkChallenge() {
         .toLowerCase()
         .trim();
 
+
     const result = document.getElementById("challenge-result");
 
 
-    if (answer === "яблоко" || answer === "apple") {
+    if (answer === "apple" || answer === "яблоко") {
 
-    xp = Number(xp) + 10;
 
-localStorage.setItem("xp", xp);
+        xp = xp + 10;
 
-document.getElementById("xp-count").innerText = xp;
-document.getElementById("xp-count").innerText = xp;
+
+        localStorage.setItem("xp", xp);
+
+
+        document.getElementById("xp-count").innerText = xp;
+
+
         result.innerHTML = "✅ Правильно! +10 XP";
+
 
     } else {
 
-        result.innerHTML = "❌ Попробуй ещё раз";
+
+        result.innerHTML = "❌ Неправильно. Попробуй ещё раз";
+
 
     }
+
+}
+
+
+
+// Новый чат
+
+function newChat() {
+
+    chat.innerHTML = `
+        <div class="message ai">
+            Hello! I am your AI teacher. Let's practice English!
+        </div>
+    `;
 
 }
