@@ -15,7 +15,7 @@ export default async function handler(req, res) {
         "X-Title": "English AI Tutor"
       },
       body: JSON.stringify({
-        model: "mistralai/mistral-7b-instruct:free",
+        model: "inclusionai/ling-3.0-flash:free",
         messages: [
           {
             role: "system",
