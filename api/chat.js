@@ -6,40 +6,43 @@ export default async function handler(req, res) {
   const { message } = req.body;
 
   try {
-    const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          contents: [
-            {
-              parts: [
-                {
-                  text: `You are an English teacher. Correct mistakes and answer simply.\n\nUser: ${message}`,
-                },
-              ],
-            },
-          ],
-        }),
-      }
-    );
+    const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${process.env.OPENROUTER_API_KEY}`,
+        "Content-Type": "application/json",
+        "HTTP-Referer": "https://english-practice-ai.vercel.app",
+        "X-Title": "English AI Tutor"
+      },
+      body: JSON.stringify({
+        model: "mistralai/mistral-7b-instruct:free",
+        messages: [
+          {
+            role: "system",
+            content: "You are an English teacher. Correct mistakes and answer simply."
+          },
+          {
+            role: "user",
+            content: message
+          }
+        ]
+      })
+    });
 
     const data = await response.json();
 
-    console.log("Gemini response:", JSON.stringify(data));
-
     if (!response.ok) {
+      console.log(data);
       return res.status(500).json(data);
     }
 
     return res.status(200).json({
-      reply: data.candidates[0].content.parts[0].text,
+      reply: data.choices[0].message.content
     });
-  } catch (err) {
-    console.error(err);
-    return res.status(500).json({ error: err.message });
+
+  } catch (error) {
+    return res.status(500).json({
+      error: error.message
+    });
   }
 }
