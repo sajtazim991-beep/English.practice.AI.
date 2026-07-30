@@ -95,3 +95,26 @@ input {
     border-radius: 10px;
     width: 50px;
 }
+.input-area {
+    position: fixed;
+    bottom: 0;
+    left: 250px;
+    right: 0;
+    background: #212121;
+    padding: 15px;
+    display: flex;
+}
+
+@media (max-width: 600px) {
+    .sidebar {
+        display: none;
+    }
+
+    .input-area {
+        left: 0;
+    }
+}
+
+input {
+    width: 100%;
+}
