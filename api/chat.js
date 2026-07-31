@@ -21,7 +21,7 @@ module.exports = async function handler(req, res) {
           "X-Title": "My AI English Tutor"
         },
         body: JSON.stringify({
-          model: "openai/gpt-4o-mini",
+          model: "inclusionai/ling-3.0-flash:free",
           messages: [
             {
               role: "system",
