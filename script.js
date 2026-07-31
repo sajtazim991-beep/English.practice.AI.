@@ -208,50 +208,45 @@ function openChallenges(){
 
 
 
-function checkChallenge(){
+function checkChallenge() {
 
+    if (localStorage.getItem("challengeDone") === "true") {
 
-    const answer = document
-    .getElementById("challenge-answer")
-    .value
-    .toLowerCase()
-    .trim();
+        document.getElementById("challenge-result").innerHTML =
+        "✅ Это испытание уже выполнено.";
 
-
-
-    const result =
-    document.getElementById("challenge-result");
-
-
-
-
-    if(answer==="apple" || answer==="яблоко"){
-
-
-        xp += 10;
-
-
-        localStorage.setItem("xp",xp);
-
-
-        updateXP();
-
-
-
-        result.innerHTML="✅ Правильно! +10 XP";
-
-
-    } else {
-
-
-        result.innerHTML="❌ Попробуй ещё раз";
-
+        return;
 
     }
 
+    const answer = document
+        .getElementById("challenge-answer")
+        .value
+        .toLowerCase()
+        .trim();
+
+    const result = document.getElementById("challenge-result");
+
+    if (answer === "apple" || answer === "яблоко") {
+
+        xp += 10;
+
+        localStorage.setItem("xp", xp);
+        localStorage.setItem("challengeDone", "true");
+
+        updateXP();
+
+        result.innerHTML = "🎉 Правильно! +10 XP";
+
+        document.getElementById("challenge-answer").disabled = true;
+
+    } else {
+
+        result.innerHTML = "❌ Попробуй ещё раз";
+
+    }
 
 }
-
 
 
 
