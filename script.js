@@ -129,8 +129,7 @@ console.log(data);
 
         <div class="message ai">
 
-        🤖 AI:
-        ${data.reply || "Ответ получен"}
+🤖 AI: ${data.reply || JSON.stringify(data)}
 
         </div>
 
