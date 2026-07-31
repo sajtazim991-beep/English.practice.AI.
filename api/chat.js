@@ -1,42 +1,62 @@
 module.exports = async function handler(req, res) {
+
   if (req.method !== "POST") {
-    return res.status(405).json({ error: "Method not allowed" });
+    return res.status(405).json({
+      error: "Method not allowed"
+    });
   }
 
-  const { message } = req.body;
-
   try {
-    const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Authorization": `Bearer ${process.env.OPENROUTER_API_KEY}`,
-        "Content-Type": "application/json",
-        "HTTP-Referer": "https://english-practice-ai.vercel.app",
-        "X-Title": "English AI Tutor"
-      },
-      body: JSON.stringify({
-        model: "inclusionai/ling-3.0-flash:free",
-        messages: [
-          {
-            role: "system",
-content: "You are an English tutor. Answer in simple plain text. Do not use markdown formatting. Do not use symbols like #, *, |, or \\n. Do not use tables. Write naturally with clear paragraphs and examples. Explain lessons in a student-friendly way."
-          },
-          {
-            role: "user",
-            content: message
-          }
-        ]
-      })
+
+    const { message } = req.body;
+
+    const response = await fetch(
+      "https://openrouter.ai/api/v1/chat/completions",
+      {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${process.env.OPENROUTER_API_KEY}`,
+          "Content-Type": "application/json",
+          "HTTP-Referer": "https://english-practice-bs8aa8wk8-my-ai9.vercel.app",
+          "X-Title": "My AI English Tutor"
+        },
+        body: JSON.stringify({
+          model: "openai/gpt-4o-mini",
+          messages: [
+            {
+              role: "system",
+              content:
+                "You are a friendly English tutor. Answer simply and clearly."
+            },
+            {
+              role: "user",
+              content: message
+            }
+          ]
+        })
+      }
+    );
+
+    const data = await response.json();
+
+    console.log(data);
+
+    if (!response.ok) {
+      return res.status(response.status).json(data);
+    }
+
+    return res.status(200).json({
+      reply: data.choices[0].message.content
     });
 
-    cconst data = await response.json();
+  } catch (error) {
 
-console.log(data);
+    console.error(error);
 
-if (!response.ok) {
-  return res.status(response.status).json(data);
-}
+    return res.status(500).json({
+      error: error.message
+    });
 
-return res.status(200).json({
-  reply: data.choices?.[0]?.message?.content || "Пустой ответ от OpenRouter"
-});
+  }
+
+};
