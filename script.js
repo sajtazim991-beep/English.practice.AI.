@@ -123,7 +123,7 @@ async function sendMessage() {
 
         const data = await response.json();
 
-
+console.log(data);
 
         chat.innerHTML += `
 
