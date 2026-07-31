@@ -142,19 +142,15 @@ console.log(data);
 
     catch(error){
 
+    console.error(error);
 
-        chat.innerHTML += `
-
+    chat.innerHTML += `
         <div class="message ai">
-
-        ❌ Ошибка соединения
-
+            ❌ Ошибка: ${error.message}
         </div>
+    `;
 
-        `;
-
-
-    }
+}
 
 
 
