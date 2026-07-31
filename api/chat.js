@@ -29,20 +29,14 @@ content: "You are an English tutor. Answer in simple plain text. Do not use mark
       })
     });
 
-    const data = await response.json();
+    cconst data = await response.json();
 
-    if (!response.ok) {
-      console.log(data);
-      return res.status(500).json(data);
-    }
+console.log(data);
 
-    return res.status(200).json({
-      reply: data.choices[0].message.content
-    });
-
-  } catch (error) {
-    return res.status(500).json({
-      error: error.message
-    });
-  }
+if (!response.ok) {
+  return res.status(response.status).json(data);
 }
+
+return res.status(200).json({
+  reply: data.choices?.[0]?.message?.content || "Пустой ответ от OpenRouter"
+});
