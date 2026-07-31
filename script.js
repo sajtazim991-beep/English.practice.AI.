@@ -361,3 +361,11 @@ function newChat(){
 
 
 }
+if (localStorage.getItem("challengeDone") === "true") {
+
+    document.getElementById("challenge-answer").disabled = true;
+
+    document.getElementById("challenge-result").innerHTML =
+    "✅ Это испытание уже выполнено.";
+
+}
