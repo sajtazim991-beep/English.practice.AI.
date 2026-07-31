@@ -45,9 +45,18 @@ module.exports = async function handler(req, res) {
       return res.status(response.status).json(data);
     }
 
-    return res.status(200).json({
-      reply: data.choices[0].message.content
-    });
+    if (!data.choices || !data.choices[0] || !data.choices[0].message) {
+  console.log("OpenRouter response:", data);
+
+  return res.status(500).json({
+    error: "OpenRouter returned an invalid response",
+    data
+  });
+}
+
+return res.status(200).json({
+  reply: data.choices[0].message.content
+});
 
   } catch (error) {
 
